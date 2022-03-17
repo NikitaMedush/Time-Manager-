@@ -9,13 +9,11 @@ import UIKit
 
 class CreateTaskTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var createNameLabel: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var repeadEverydaySwitch: UISwitch!
 
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     func switchIsHidden(indexPath: IndexPath) {
         repeadEverydaySwitch.isOn = false

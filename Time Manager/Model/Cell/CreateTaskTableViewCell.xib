@@ -17,27 +17,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-IO-oXr">
-                        <rect key="frame" x="16" y="12" width="42" height="21"/>
+                        <rect key="frame" x="5" y="11.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORI-fh-LGj">
-                        <rect key="frame" x="266" y="5" width="51" height="34"/>
+                        <rect key="frame" x="266" y="6.5" width="51" height="31"/>
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Yto-IO-oXr" secondAttribute="bottom" constant="11" id="D0T-Rn-Btf"/>
-                    <constraint firstItem="Yto-IO-oXr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="GeF-KP-PU0"/>
-                    <constraint firstItem="ORI-fh-LGj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="RTT-ZV-vTI"/>
-                    <constraint firstAttribute="bottom" secondItem="ORI-fh-LGj" secondAttribute="bottom" constant="5" id="Zla-XE-ifo"/>
-                    <constraint firstAttribute="trailing" secondItem="ORI-fh-LGj" secondAttribute="trailing" constant="5" id="kCG-6t-Q0Y"/>
-                    <constraint firstItem="Yto-IO-oXr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="sBq-Y1-xRf"/>
+                    <constraint firstItem="Yto-IO-oXr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="DIB-mi-8Bd"/>
+                    <constraint firstItem="ORI-fh-LGj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Qsr-IC-IC9"/>
+                    <constraint firstAttribute="trailing" secondItem="ORI-fh-LGj" secondAttribute="trailing" constant="5" id="fjK-2F-Say"/>
+                    <constraint firstItem="Yto-IO-oXr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vtV-aH-1JJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="createNameLabel" destination="Yto-IO-oXr" id="G7U-jf-J7K"/>
+                <outlet property="nameLabel" destination="Yto-IO-oXr" id="ugK-4Z-iml"/>
                 <outlet property="repeadEverydaySwitch" destination="ORI-fh-LGj" id="mlT-3b-aPM"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>

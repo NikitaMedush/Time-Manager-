@@ -13,13 +13,9 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskReadyLabel: UILabel!
     @IBOutlet weak var definitionTaskLabel: UILabel!
     
-    //    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    override func layoutSubviews() {
+//        self.backgroundColor = .clear
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

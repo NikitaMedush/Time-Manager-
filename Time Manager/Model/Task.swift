@@ -13,10 +13,11 @@ class Task: Object {
     
     
     @Persisted(primaryKey: true) var name: String = ""
-    @Persisted var definitionTask: String = "описание"
+    @Persisted var definitionTask: String = ""
     @Persisted var taskReady: Bool = false
     @Persisted var repeatEveryday: Bool = false
     @Persisted var date = Date()
+    @Persisted var time = Date()
    
     convenience init(name: String, definitionTask: String, taskReady: Bool = false, repeatEveryday: Bool = false, date: Date, time: Date)
     {
@@ -26,5 +27,6 @@ class Task: Object {
         self.definitionTask = definitionTask
         self.repeatEveryday = repeatEveryday
         self.date = date
+        self.time = time
     }
 }

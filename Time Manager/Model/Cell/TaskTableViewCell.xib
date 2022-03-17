@@ -22,17 +22,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выполнено +-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6L-jZ-pVo">
-                        <rect key="frame" x="249" y="126" width="113" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61b-CK-6Bj">
-                        <rect key="frame" x="25" y="111" width="130" height="31"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Дополнительно"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhK-6y-KiJ">
                         <rect key="frame" x="15" y="45.5" width="78.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -41,13 +30,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="61b-CK-6Bj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="AgQ-E0-rTI"/>
                     <constraint firstItem="rhK-6y-KiJ" firstAttribute="top" secondItem="HeB-aJ-uHD" secondAttribute="bottom" constant="5" id="CeJ-Zs-fUV"/>
                     <constraint firstItem="HeB-aJ-uHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="IaF-cA-coc"/>
-                    <constraint firstAttribute="bottom" secondItem="61b-CK-6Bj" secondAttribute="bottom" constant="10" id="KHn-XD-X0G"/>
-                    <constraint firstAttribute="trailing" secondItem="F6L-jZ-pVo" secondAttribute="trailing" constant="5" id="LzI-9W-MAz"/>
                     <constraint firstItem="rhK-6y-KiJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ZlP-t2-0hf"/>
-                    <constraint firstAttribute="bottom" secondItem="F6L-jZ-pVo" secondAttribute="bottom" constant="5" id="aD3-8u-maA"/>
                     <constraint firstItem="HeB-aJ-uHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="pIn-6Q-Pl0"/>
                 </constraints>
             </tableViewCellContentView>
@@ -55,7 +40,6 @@
             <connections>
                 <outlet property="definitionTaskLabel" destination="rhK-6y-KiJ" id="li4-Ye-Vhe"/>
                 <outlet property="nameLabel" destination="HeB-aJ-uHD" id="XCr-KY-r5c"/>
-                <outlet property="taskReadyLabel" destination="F6L-jZ-pVo" id="zdD-Oj-yaC"/>
             </connections>
             <point key="canvasLocation" x="177.536231884058" y="52.901785714285715"/>
         </tableViewCell>

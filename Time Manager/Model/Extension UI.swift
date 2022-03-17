@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func alertDate(label: UILabel, completionHandler: @escaping (Int,NSDate) -> Void) {
+    func alertDate(label: UILabel, completionHandler: @escaping (Int,Date) -> Void) {
         let alert = UIAlertController(title: "", message:  nil, preferredStyle: .actionSheet)
         
         let datePicker = UIDatePicker()
@@ -27,9 +27,9 @@ extension UIViewController {
             guard let weekday = component.weekday else {
                 return
             }
-            let numberWeekday = component.weekday
-            let date = datePicker.date as NSDate
-            completionHandler(numberWeekday!, date)
+            let numberWeekday = weekday
+            let date = datePicker.date
+            completionHandler(numberWeekday, date)
             label.text = dateString
         }
         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
@@ -58,7 +58,7 @@ extension UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             let timeString = dateFormatter.string(from: datePicker.date)
-            let timeTask = datePicker.date as Date
+            let timeTask = datePicker.date
             completionHandler(timeTask)
             
             label.text = timeString 
@@ -76,7 +76,7 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func alertForCellName(label: UILabel, name: String, placeholder: String) {
+    func alertForCellName(label: UILabel, name: String, placeholder: String, completionHandler: @escaping (String) -> Void) {
         let alert = UIAlertController(title: name, message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .cancel) { (action) in
             let textFieldAlert = alert.textFields?.first
@@ -84,6 +84,7 @@ extension UIViewController {
                 return
             }
             label.text = text
+            completionHandler(text)
         }
         alert.addTextField { (textFieldAlert) in
             textFieldAlert.placeholder = placeholder

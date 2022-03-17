@@ -7,7 +7,6 @@
 import RealmSwift
 import FSCalendar
 import UIKit
-import Alamofire
 import SwiftUI
 
 class MainScreen: UIViewController {
@@ -18,7 +17,6 @@ class MainScreen: UIViewController {
     
 
     @IBOutlet weak var tasksTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +38,12 @@ class MainScreen: UIViewController {
         calendar.dataSource = self
         let nib = UINib(nibName: "TaskTableViewCell", bundle: nil)
         tasksTableView.register(nib, forCellReuseIdentifier: "MyCell")
-        calendar.scope = .week
+        calendar.scope = .month
     }
     
     func setConstraints() {
         
+
         calendar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(calendar)
         NSLayoutConstraint.activate([
@@ -110,7 +109,6 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
                guard let myCell = tasksTableView.dequeueReusableCell(withIdentifier: customCell, for: indexPath) as? TaskTableViewCell else {
                     return UITableViewCell()
                 }
-        
         let task = controller?.getTaskCell(for: indexPath.row)
         myCell.nameLabel.text = task?.name
         myCell.definitionTaskLabel.text = task?.definitionTask
@@ -139,15 +137,12 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
             try! realm.write {
                 let thisTask = realm.object(ofType: Task.self, forPrimaryKey: controller?.model?.tasks[indexPath.row].name)
                 thisTask?.taskReady = true
-                print(thisTask?.taskReady)
                 print(RealmManager.sharedInstance.getDataFromDB())
             }
        } else {
            try! realm.write {
                let thisTask = realm.object(ofType: Task.self, forPrimaryKey: controller?.model?.tasks[indexPath.row].name)
                thisTask?.taskReady = false
-               print(thisTask?.taskReady)
-               print(RealmManager.sharedInstance.getDataFromDB())
            }
            tasksTableView.cellForRow(at: indexPath)?.accessoryType = .none
        }
