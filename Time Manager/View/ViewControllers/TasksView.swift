@@ -9,7 +9,7 @@ import FSCalendar
 import UIKit
 import SwiftUI
 
-class MainScreen: UIViewController {
+class TasksView: UIViewController {
     var realm = try! Realm()
     var controller: MainScreenController?
     let customCell = "MyCell"
@@ -78,20 +78,17 @@ class MainScreen: UIViewController {
         ])
     }
     
-    @IBAction func edit(_ sender: Any) {
-        tasksTableView.isEditing = !tasksTableView.isEditing
-    }
+
     @IBAction func add(_ sender: Any) {
-       guard let createTaskViewController = storyboard?.instantiateViewController(withIdentifier: "CreateTaskViewController") as? CreateTaskViewController else {
+       guard let createTaskViewController = storyboard?.instantiateViewController(withIdentifier: "CreateTaskViewController") as? CreateTaskView else {
             return
         }
         navigationController?.pushViewController(createTaskViewController, animated: true)
     }
 }
 
-extension MainScreen: UITableViewDelegate, UITableViewDataSource {
+extension TasksView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return controller?.getNumberOfRows() ?? 1
         controller?.model?.tasksDB?.count ?? 1
     }
     
@@ -99,12 +96,7 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
                guard let myCell = tasksTableView.dequeueReusableCell(withIdentifier: customCell, for: indexPath) as? TaskTableViewCell else {
                     return UITableViewCell()
                 }
-//        let task = controller?.getTaskCell(for: indexPath.row)
-//        myCell.nameLabel.text = task?.nameTask
-//        myCell.definitionTaskLabel.text = task?.definitionTask
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        myCell.timeLabel.text = dateFormatter.string(from: task?.dateTask as! Date)
+
         let task = controller?.model?.tasksDB?[indexPath.row]
         myCell.configCell(task: task as! Task)
         return myCell
@@ -112,12 +104,14 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-    
-            try! realm.write {
-                realm.delete(realm.objects(Task.self).filter("nameTask=%@", controller?.model?.tasks[indexPath.row].nameTask))
+            
+            guard let task = controller?.model?.tasksDB?[indexPath.row] else {
+                return
             }
-            controller?.model?.tasks.remove(at: indexPath.row)
+            RealmManager.sharedInstance.deleteFromDb(object: task)
+            
             tasksTableView.reloadData()
+            
         } else if editingStyle == .insert {
         }
     }
@@ -149,7 +143,7 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MainScreen: FSCalendarDataSource, FSCalendarDelegate {
+extension TasksView: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         view.layoutIfNeeded()

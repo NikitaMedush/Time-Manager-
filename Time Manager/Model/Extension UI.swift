@@ -16,6 +16,7 @@ extension UIViewController {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = NSLocale(localeIdentifier: "Ru_ru") as Locale
         alert.view.addSubview(datePicker)
         
         let ok = UIAlertAction(title: "Ok", style: .cancel) {(action) in

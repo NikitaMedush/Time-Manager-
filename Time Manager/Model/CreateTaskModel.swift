@@ -9,5 +9,5 @@ import Foundation
 
 class CreateTaskModel {
     var controller: CreateTaskController?
-    let cellName: [String] = ["Задание", "Описание", "Дата", "Время", "Повторять ежедневно"]
+    let cellName: [String] = ["Задача", "Описание", "Дата и время", "Повторять ежедневно"]
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class CreateTaskController {
     var model: CreateTaskModel?
-    var view: CreateTaskViewController?
+    var view: CreateTaskView?
     
     
     func getNumberOfRows() -> Int? {
@@ -22,7 +22,7 @@ class CreateTaskController {
     }
     
     
-        init(view: CreateTaskViewController, model: CreateTaskModel) {
+        init(view: CreateTaskView, model: CreateTaskModel) {
             self.view = view
             self.model = model
             

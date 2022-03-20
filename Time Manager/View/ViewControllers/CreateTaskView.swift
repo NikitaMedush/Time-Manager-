@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class CreateTaskViewController: UIViewController {
+class CreateTaskView: UIViewController {
     
     
     @IBOutlet weak var createTaskTableView: UITableView!
@@ -20,6 +20,8 @@ class CreateTaskViewController: UIViewController {
         super.viewDidLoad()
         createSecondModule()
         setConstraints()
+        createTaskTableView.backgroundColor = .clear
+        view.backgroundColor = .systemOrange
     }
     func createSecondModule() {
         let view = self
@@ -52,7 +54,7 @@ class CreateTaskViewController: UIViewController {
     }
     @IBAction func saveTaskButton(_ sender: Any) {
         RealmManager.sharedInstance.addData(object: newTask)
-        guard let ViewController = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as? MainScreen else {
+        guard let ViewController = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as? TasksView else {
              return
          }
          navigationController?.pushViewController(ViewController, animated: true)
@@ -61,7 +63,7 @@ class CreateTaskViewController: UIViewController {
  
 }
 
-extension CreateTaskViewController: UITableViewDelegate, UITableViewDataSource {
+extension CreateTaskView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         controller?.getNumberOfRows() ?? 2
@@ -70,6 +72,7 @@ extension CreateTaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let createCell = createTaskTableView.dequeueReusableCell(withIdentifier: customCell, for: indexPath) as? CreateTaskTableViewCell else { return UITableViewCell()
         }
+        createCell.config()
         createCell.nameLabel.text = controller?.model?.cellName[indexPath.row]
         createCell.switchIsHidden(indexPath: indexPath)
         return createCell
@@ -97,13 +100,8 @@ extension CreateTaskViewController: UITableViewDelegate, UITableViewDataSource {
             self.newTask.dateTask = date
             self.newTask.weekdayTask = numberWeekday
         }
-//        case 3:
-//            alertTime(label: cell.nameLabel) { (timeTask) in
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "HH:mm"
-////                self.newTask.timeTask = timeTask
-//        }
-        case 4: self.newTask.repeatTask = cell.repeadEverydaySwitch.isOn.self
+        case 3:
+            self.newTask.repeatTask = cell.repeadEverydaySwitch.isOn.self
         default: break 
         }
         

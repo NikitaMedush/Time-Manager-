@@ -10,7 +10,7 @@ import UIKit
 
 
 class MainScreenController {
-    var view: MainScreen?
+    var view: TasksView?
     var model: MainScreenModel?
     var createTaskController: CreateTaskController?
     
@@ -34,13 +34,13 @@ class MainScreenController {
     func createSecondModule() {
         let viewCreateScreen = view?.storyboard?.instantiateViewController(withIdentifier: "CreateTaskViewController")
         let modelCreateScreen =  CreateTaskModel()
-        let controllerCreateScreen = CreateTaskController(view: viewCreateScreen as! CreateTaskViewController, model: modelCreateScreen as! CreateTaskModel)
+        let controllerCreateScreen = CreateTaskController(view: viewCreateScreen as! CreateTaskView, model: modelCreateScreen as! CreateTaskModel)
         self.createTaskController = controllerCreateScreen
         self.createTaskController?.model?.controller = controllerCreateScreen
     }
 
     
-    init(view: MainScreen, model: MainScreenModel) {
+    init(view: TasksView, model: MainScreenModel) {
         self.view = view
         self.model = model
         

@@ -14,7 +14,6 @@ class MainScreenModel {
     var controller: MainScreenController?
     var tasks = [Task]()
     var tasksDB: Results <Task>?
-    
 }
 
 

@@ -16,7 +16,7 @@
 		840B65B727D228690004AB19 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 840B65B627D228690004AB19 /* FSCalendar */; };
 		84A2A42127C67C310070C8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2A42027C67C310070C8DC /* AppDelegate.swift */; };
 		84A2A42327C67C310070C8DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2A42227C67C310070C8DC /* SceneDelegate.swift */; };
-		84A2A42527C67C310070C8DC /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2A42427C67C310070C8DC /* MainScreen.swift */; };
+		84A2A42527C67C310070C8DC /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2A42427C67C310070C8DC /* TasksView.swift */; };
 		84A2A42827C67C310070C8DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A42627C67C310070C8DC /* Main.storyboard */; };
 		84A2A42A27C67C330070C8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A42927C67C330070C8DC /* Assets.xcassets */; };
 		84A2A42D27C67C330070C8DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A42B27C67C330070C8DC /* LaunchScreen.storyboard */; };
@@ -24,7 +24,7 @@
 		84CA676727DCFD9100483912 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA676527DCFD9100483912 /* TaskTableViewCell.swift */; };
 		84CA676827DCFD9100483912 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA676627DCFD9100483912 /* TaskTableViewCell.xib */; };
 		84CA676A27DD24B100483912 /* Extension UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA676927DD24B100483912 /* Extension UI.swift */; };
-		84CA67CE27E0A20900483912 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA67CD27E0A20900483912 /* CreateTaskViewController.swift */; };
+		84CA67CE27E0A20900483912 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA67CD27E0A20900483912 /* CreateTaskView.swift */; };
 		84CA67D027E0A96A00483912 /* CreateTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA67CF27E0A96A00483912 /* CreateTaskController.swift */; };
 		84CA67D227E0A99A00483912 /* CreateTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA67D127E0A99A00483912 /* CreateTaskModel.swift */; };
 		84CA67D627E0B7A100483912 /* CreateTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA67D427E0B7A100483912 /* CreateTaskTableViewCell.swift */; };
@@ -38,7 +38,7 @@
 		84A2A41D27C67C310070C8DC /* Time Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A2A42027C67C310070C8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A2A42227C67C310070C8DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		84A2A42427C67C310070C8DC /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		84A2A42427C67C310070C8DC /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		84A2A42727C67C310070C8DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A2A42927C67C330070C8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A2A42C27C67C330070C8DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		84CA676527DCFD9100483912 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		84CA676627DCFD9100483912 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		84CA676927DD24B100483912 /* Extension UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension UI.swift"; sourceTree = "<group>"; };
-		84CA67CD27E0A20900483912 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		84CA67CD27E0A20900483912 /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		84CA67CF27E0A96A00483912 /* CreateTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskController.swift; sourceTree = "<group>"; };
 		84CA67D127E0A99A00483912 /* CreateTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskModel.swift; sourceTree = "<group>"; };
 		84CA67D427E0B7A100483912 /* CreateTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,10 +72,10 @@
 		840B65AC27CF800F0004AB19 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84CA67D327E0B74700483912 /* Cell */,
-				840B65AA27CF7EC70004AB19 /* MainScreenModel.swift */,
 				84CA67D127E0A99A00483912 /* CreateTaskModel.swift */,
+				840B65AA27CF7EC70004AB19 /* MainScreenModel.swift */,
 				840B65B127CF828F0004AB19 /* Task.swift */,
+				84CA67D327E0B74700483912 /* Cell */,
 				84CA676327DCE00D00483912 /* RealmManager.swift */,
 				84CA676927DD24B100483912 /* Extension UI.swift */,
 				84A2A42027C67C310070C8DC /* AppDelegate.swift */,
@@ -122,9 +122,9 @@
 		84A2A41F27C67C310070C8DC /* Time Manager */ = {
 			isa = PBXGroup;
 			children = (
-				840B65AE27CF80320004AB19 /* Controllers */,
-				840B65AD27CF80260004AB19 /* View */,
 				840B65AC27CF800F0004AB19 /* Model */,
+				840B65AD27CF80260004AB19 /* View */,
+				840B65AE27CF80320004AB19 /* Controllers */,
 				84A2A42E27C67C330070C8DC /* Info.plist */,
 			);
 			path = "Time Manager";
@@ -153,8 +153,8 @@
 		84CA67D927E0BAA800483912 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				84CA67CD27E0A20900483912 /* CreateTaskViewController.swift */,
-				84A2A42427C67C310070C8DC /* MainScreen.swift */,
+				84CA67CD27E0A20900483912 /* CreateTaskView.swift */,
+				84A2A42427C67C310070C8DC /* TasksView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 			files = (
 				84CA67D627E0B7A100483912 /* CreateTaskTableViewCell.swift in Sources */,
 				84CA676727DCFD9100483912 /* TaskTableViewCell.swift in Sources */,
-				84A2A42527C67C310070C8DC /* MainScreen.swift in Sources */,
+				84A2A42527C67C310070C8DC /* TasksView.swift in Sources */,
 				84A2A42127C67C310070C8DC /* AppDelegate.swift in Sources */,
 				84A2A42327C67C310070C8DC /* SceneDelegate.swift in Sources */,
 				84CA67D227E0A99A00483912 /* CreateTaskModel.swift in Sources */,
@@ -255,7 +255,7 @@
 				840B65B027CF80A50004AB19 /* MainScreenController.swift in Sources */,
 				84CA676427DCE00D00483912 /* RealmManager.swift in Sources */,
 				84CA676A27DD24B100483912 /* Extension UI.swift in Sources */,
-				84CA67CE27E0A20900483912 /* CreateTaskViewController.swift in Sources */,
+				84CA67CE27E0A20900483912 /* CreateTaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

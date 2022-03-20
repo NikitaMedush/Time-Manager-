@@ -13,11 +13,14 @@ class CreateTaskTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var repeadEverydaySwitch: UISwitch!
 
-    
+    func config() {
+        self.layer.cornerRadius = 15
+        self.backgroundColor = .clear
+    }
     
     func switchIsHidden(indexPath: IndexPath) {
         repeadEverydaySwitch.isOn = false
-        if indexPath.row == 4 {
+        if indexPath.row == 3 {
             repeadEverydaySwitch.isOn = false
         } else {
             repeadEverydaySwitch.isHidden = true
