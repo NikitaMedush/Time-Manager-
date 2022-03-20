@@ -12,21 +12,22 @@ import Foundation
 class Task: Object {
     
     
-    @Persisted(primaryKey: true) var name: String = ""
+    @Persisted(primaryKey: true) var nameTask: String = ""
     @Persisted var definitionTask: String = ""
-    @Persisted var taskReady: Bool = false
-    @Persisted var repeatEveryday: Bool = false
-    @Persisted var date = Date()
-    @Persisted var time = Date()
-   
-    convenience init(name: String, definitionTask: String, taskReady: Bool = false, repeatEveryday: Bool = false, date: Date, time: Date)
+    @Persisted var readyTask: Bool = false
+    @Persisted var repeatTask: Bool = false
+    @Persisted var dateTask: Date?
+//    @Persisted var timeTask: Date
+    @Persisted var weekdayTask: Int = 1
+    convenience init(nameTask: String, definitionTask: String, readyTask: Bool = false, repeatEveryday: Bool = false, dateTask: Date?, weekdayTask: Int)
     {
         self.init()
-        self.name = name
-        self.taskReady = taskReady
+        self.nameTask = nameTask
+        self.readyTask = readyTask
         self.definitionTask = definitionTask
-        self.repeatEveryday = repeatEveryday
-        self.date = date
-        self.time = time
+        self.repeatTask = repeatEveryday
+        self.dateTask = dateTask
+//        self.timeTask = timeTask
+        self.weekdayTask = weekdayTask
     }
 }

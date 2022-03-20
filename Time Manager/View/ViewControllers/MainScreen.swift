@@ -14,7 +14,7 @@ class MainScreen: UIViewController {
     var controller: MainScreenController?
     let customCell = "MyCell"
     let calendar = FSCalendar()
-    
+    var tasksDB: Results<Task>?
 
     @IBOutlet weak var tasksTableView: UITableView!
     
@@ -22,8 +22,12 @@ class MainScreen: UIViewController {
         super.viewDidLoad()
         createFirstModule()
         setConstraints()
+        activationСalendar(date: calendar.today!)
         controller?.model?.tasks.append(contentsOf: RealmManager.sharedInstance.reverseArray())
+        view.backgroundColor = .systemOrange
+        tasksTableView.backgroundColor = .clear
     }
+    
     
     func createFirstModule() {
         let view = self
@@ -41,9 +45,20 @@ class MainScreen: UIViewController {
         calendar.scope = .month
     }
     
+    func activationСalendar(date: Date) {
+        let dateStart = date
+        let dateEnd: Date = {
+            let components = DateComponents(day: 1, second: -1)
+            return Calendar.current.date(byAdding: components, to: dateStart)!
+        }()
+        
+        controller?.model?.tasksDB = realm.objects(Task.self).filter("dateTask BETWEEN %@", [dateStart, dateEnd])
+
+        tasksTableView.reloadData()
+    }
+    
     func setConstraints() {
         
-
         calendar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(calendar)
         NSLayoutConstraint.activate([
@@ -57,8 +72,8 @@ class MainScreen: UIViewController {
         NSLayoutConstraint.activate([
             tasksTableView.heightAnchor.constraint(equalToConstant: 700),
             tasksTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
-            tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tasksTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            tasksTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             tasksTableView.bottomAnchor.constraint(equalTo: calendar.topAnchor, constant: 10)
         ])
     }
@@ -71,47 +86,27 @@ class MainScreen: UIViewController {
             return
         }
         navigationController?.pushViewController(createTaskViewController, animated: true)
-
-        
-        
-        
-//            let alertController = UIAlertController(title: "Добавьте новое задание", message: "Заполните поля", preferredStyle: .alert)
-//            alertController.addTextField { textField in
-//                textField.placeholder = "Задание" }
-//            alertController.addTextField { textField in
-//                textField.placeholder = "Описание"  }
-//
-//            let createButton = UIAlertAction(title: "Добавить", style: .default) {
-//                _ in
-//                guard let taskName = alertController.textFields?[0].text, let taskDefinition = alertController.textFields?[1].text else {
-//                    return
-//                }
-//                let newTask = Task(name: taskName, definitionTask: taskDefinition, date: Date(), time: Date())
-//            DBManager.sharedInstance.addData(object: newTask)
-//            self.controller?.model?.tasks = DBManager.sharedInstance.reverseArray()
-//            self.tasksTableView.reloadData()
-//        }
-//        let cancelButton = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
-//        alertController.addAction(cancelButton)
-//        alertController.addAction(createButton)
-//        self.present(alertController, animated: true, completion: nil)
-        
     }
-    
 }
 
 extension MainScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return controller?.getNumberOfRows() ?? 1
+//        return controller?.getNumberOfRows() ?? 1
+        controller?.model?.tasksDB?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                guard let myCell = tasksTableView.dequeueReusableCell(withIdentifier: customCell, for: indexPath) as? TaskTableViewCell else {
                     return UITableViewCell()
                 }
-        let task = controller?.getTaskCell(for: indexPath.row)
-        myCell.nameLabel.text = task?.name
-        myCell.definitionTaskLabel.text = task?.definitionTask
+//        let task = controller?.getTaskCell(for: indexPath.row)
+//        myCell.nameLabel.text = task?.nameTask
+//        myCell.definitionTaskLabel.text = task?.definitionTask
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        myCell.timeLabel.text = dateFormatter.string(from: task?.dateTask as! Date)
+        let task = controller?.model?.tasksDB?[indexPath.row]
+        myCell.configCell(task: task as! Task)
         return myCell
     }
     
@@ -119,7 +114,7 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
     
             try! realm.write {
-                realm.delete(realm.objects(Task.self).filter("name=%@", controller?.model?.tasks[indexPath.row].name))
+                realm.delete(realm.objects(Task.self).filter("nameTask=%@", controller?.model?.tasks[indexPath.row].nameTask))
             }
             controller?.model?.tasks.remove(at: indexPath.row)
             tasksTableView.reloadData()
@@ -131,21 +126,13 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tasksTableView.deselectRow(at: indexPath, animated: true)
-        if controller?.changeValueTask(task: indexPath.row) as! Bool {
-           tasksTableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            try! realm.write {
-                let thisTask = realm.object(ofType: Task.self, forPrimaryKey: controller?.model?.tasks[indexPath.row].name)
-                thisTask?.taskReady = true
-                print(RealmManager.sharedInstance.getDataFromDB())
-            }
-       } else {
-           try! realm.write {
-               let thisTask = realm.object(ofType: Task.self, forPrimaryKey: controller?.model?.tasks[indexPath.row].name)
-               thisTask?.taskReady = false
-           }
-           tasksTableView.cellForRow(at: indexPath)?.accessoryType = .none
-       }
+        tasksTableView.deselectRow(at: indexPath, animated: false)
+        let task = controller?.model?.tasksDB?[indexPath.row]
+        RealmManager.sharedInstance.updateObject(task: task as! Task, newValue: !(task?.readyTask ?? false))
+        tasksTableView.reloadData()
+
+           print(RealmManager.sharedInstance.getDataFromDB())
+
     }
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
@@ -158,7 +145,7 @@ extension MainScreen: UITableViewDelegate, UITableViewDataSource {
         controller?.model?.tasks.insert(element, at: destinationIndexPath.row)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        100
     }
 }
 
@@ -169,16 +156,25 @@ extension MainScreen: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(date)
+        activationСalendar(date: date)
 //        let calendar = Calendar.current
 //        let components = calendar.dateComponents([.weekday], from: date)
 //        guard let weekday = components.weekday else {
 //            return
 //            }
-//        print(weekday)
-//        let predicateRepeat = NSPredicate(format: "repeatEveryday = \(weekday) = true")
-//        controller?.model?.tasksDB = realm.objects(Task.self).filter(predicateRepeat)
-//
+
+//        let dateStart = date
+//        let dateEnd: Date = {
+//            let components = DateComponents(day: 1, second: -1)
+//            return Calendar.current.date(byAdding: components, to: dateStart)!
+//        }()
+        
+//        let predicateRepeat = NSPredicate(format: "repeatTask = \(weekday) AND weekdayTask = true")
+//        let predicateUnrepeat = NSPredicate(format: "repeatTask = false AND dateTask BETWEEN %@", [dateStart, dateEnd])
+//        let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat,predicateUnrepeat])
+//        controller?.model?.tasksDB = realm.objects(Task.self).filter(compound)
+//        print(RealmManager.sharedInstance.getDataFromDB())
+        
     }
 }
 

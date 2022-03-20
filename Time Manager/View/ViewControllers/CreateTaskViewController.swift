@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CreateTaskViewController: UIViewController {
     
@@ -51,7 +52,6 @@ class CreateTaskViewController: UIViewController {
     }
     @IBAction func saveTaskButton(_ sender: Any) {
         RealmManager.sharedInstance.addData(object: newTask)
-        print(RealmManager.sharedInstance.getDataFromDB())
         guard let ViewController = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as? MainScreen else {
              return
          }
@@ -86,21 +86,24 @@ extension CreateTaskViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             alertForCellName(label: cell.nameLabel, name: "Укажите имя задачи", placeholder: "Введите текст") { (text) in
-            self.newTask.name = text
+            self.newTask.nameTask = text
         }
         case 1:
             alertForCellName(label: cell.nameLabel, name: "Укажите описание задачи", placeholder: "Введите текст") { (text) in
-            self.newTask.definitionTask = text
+                self.newTask.definitionTask = text
         }
         case 2:
             alertDate(label: cell.nameLabel) { (numberWeekday , date) in
-            self.newTask.date = date
+            self.newTask.dateTask = date
+            self.newTask.weekdayTask = numberWeekday
         }
-        case 3:
-            alertTime(label: cell.nameLabel) { (time) in
-            self.newTask.time = time
-        }
-        case 4: self.newTask.repeatEveryday = cell.repeadEverydaySwitch.isOn.self
+//        case 3:
+//            alertTime(label: cell.nameLabel) { (timeTask) in
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "HH:mm"
+////                self.newTask.timeTask = timeTask
+//        }
+        case 4: self.newTask.repeatTask = cell.repeadEverydaySwitch.isOn.self
         default: break 
         }
         

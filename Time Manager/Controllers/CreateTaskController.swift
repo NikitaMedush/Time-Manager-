@@ -15,7 +15,7 @@ class CreateTaskController {
     
     func getNumberOfRows() -> Int? {
         return model?.cellName.count
-        
+
     }
     func getNameCell(for number: Int) -> String? {
         return model?.cellName[number]

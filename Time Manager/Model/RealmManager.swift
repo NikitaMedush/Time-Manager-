@@ -34,16 +34,23 @@ class RealmManager {
             realm.delete(object)
         }
     }
+    
+    func updateObject(task: Task, newValue: Bool) {
+        try! realm.write {
+            task.readyTask = newValue
+        }
+    }
+    
     func reverseArray() -> [Task] {
         let tasks = realm.objects(Task.self)
         var arrayOfTasks = [Task]()
         for item in tasks {
             let newTask = Task()
-            newTask.name = item.name
+            newTask.nameTask = item.nameTask
             newTask.definitionTask = item.definitionTask
-            newTask.date = item.date
-            newTask.repeatEveryday = item.repeatEveryday
-            newTask.taskReady = item.taskReady
+            newTask.dateTask = item.dateTask
+            newTask.repeatTask = item.repeatTask
+            newTask.readyTask = item.readyTask
             arrayOfTasks.append(newTask)
         }
         return arrayOfTasks

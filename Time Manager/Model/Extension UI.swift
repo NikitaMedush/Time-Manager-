@@ -9,17 +9,18 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
     func alertDate(label: UILabel, completionHandler: @escaping (Int,Date) -> Void) {
-        let alert = UIAlertController(title: "", message:  nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Укажите дату", message:  nil, preferredStyle: .actionSheet)
         
         let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
+        datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         alert.view.addSubview(datePicker)
         
         let ok = UIAlertAction(title: "Ok", style: .cancel) {(action) in
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
+            dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
             let dateString = dateFormatter.string(from: datePicker.date)
             
             let calendar = Calendar.current
@@ -46,22 +47,22 @@ extension UIViewController {
     }
     
     func alertTime(label: UILabel, completionHandler: @escaping (Date) -> Void) {
-        let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
-        
+        let alert = UIAlertController(title: "Укажите Время", message: nil, preferredStyle: .actionSheet)
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = NSLocale(localeIdentifier: "Ru_ru") as Locale
         alert.view.addSubview(datePicker)
-//        выставить констрейнты **************** 
+
         let ok = UIAlertAction(title: "Ok", style: .cancel) { (action) in
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             let timeString = dateFormatter.string(from: datePicker.date)
             let timeTask = datePicker.date
             completionHandler(timeTask)
-            
-            label.text = timeString 
+
+            label.text = timeString
+            print(timeString)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         alert.addAction(ok)
@@ -83,7 +84,8 @@ extension UIViewController {
             guard let text = textFieldAlert?.text else {
                 return
             }
-            label.text = text
+            
+            label.text = (text != "" ? text : label.text)
             completionHandler(text)
         }
         alert.addTextField { (textFieldAlert) in
@@ -92,6 +94,13 @@ extension UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         alert.addAction(ok)
         alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertError(title: String, messege: String) {
+        let alert = UIAlertController(title: title, message: messege, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
 }

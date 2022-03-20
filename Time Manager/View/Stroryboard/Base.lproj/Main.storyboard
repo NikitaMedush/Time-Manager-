@@ -74,7 +74,7 @@
                                 <rect key="frame" x="170" y="617" width="75" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Добавить"/>
                                 <connections>
                                     <action selector="saveTaskButton:" destination="Wdd-OH-j6M" eventType="touchUpInside" id="IyF-Hf-PZl"/>
                                 </connections>

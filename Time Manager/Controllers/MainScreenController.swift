@@ -25,9 +25,9 @@ class MainScreenController {
     
     func changeValueTask(task: Int) -> Bool {
         
-        model?.tasks[task].taskReady = !(model?.tasks[task].taskReady as! Bool)
+        model?.tasks[task].readyTask = model?.tasks[task].readyTask as! Bool
         
-        return model?.tasks[task].taskReady as! Bool
+        return model?.tasks[task].readyTask as! Bool
     }
     
     
